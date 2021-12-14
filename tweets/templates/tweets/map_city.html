@@ -1,0 +1,9 @@
+{% extends 'tweets/base.html' %}
+{% load static %}
+{% block content %}
+<div id="map" style="height: 900px; width: 100%"></div>
+<script>
+    let city = "{{city}}"
+</script>
+<script src="{% static 'tweets/map_city.js' %}"></script>
+{% endblock content %}

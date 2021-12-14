@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from tweets.views import get_tweets, get_map
+from tweets.views import get_tweets, get_map, get_tweets_around, get_map_city
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('all-tweets/', get_tweets),
-    path('', get_map)
+    path('json/all-tweets/', get_tweets),
+    path('json/tweets-around/<city>', get_tweets_around),
+    path('', get_map),
+    path('<city>/', get_map_city)
 ]

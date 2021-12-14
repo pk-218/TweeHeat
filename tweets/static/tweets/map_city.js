@@ -15,9 +15,10 @@ const tiles = L.tileLayer(
 
 tiles.addTo(this.map);
 
-fetch('http://localhost:8000/json/all-tweets')
+fetch(`http://localhost:8000/json/tweets-around/${city}`)
   .then((res) => { res.json().then(data => {
         let x = JSON.parse(data)
+        console.log(x)
         L.geoJson(x, {
             pointToLayer: (feature, latlng) => {
                 let redIcon = L.icon({
