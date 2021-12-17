@@ -57,8 +57,18 @@ def get_state_tweets(request, state):
     return JsonResponse(res, safe=False)
 
 
-# HTML pages
+def k_means_clustering(request, k, cluster_id):
+    res = serializers.serialize('geojson', Tweets.objects.raw(
+        f'''
+            SELECT 1 as id, text, {(connection.ops.select % 'location')} FROM (SELECT
+            ST_ClusterKMeans({(connection.ops.select % 'location')}, {k}) OVER () AS cluster_id, *
+            FROM TWEETS_TWEETS) AS X WHERE cluster_id = {cluster_id};
+        '''
+    ))
+    return JsonResponse(res, safe=False)
 
+
+# HTML pages
 
 def get_map(request):
     return render(request, 'tweets/map.html')
@@ -70,3 +80,7 @@ def get_map_city(request, city):
 
 def get_map_state(request, state):
     return render(request, 'tweets/map_state.html', context={'state': state})
+
+
+def get_map_kmeans(request, k, cluster_id):
+    return render(request, 'tweets/map_kmeans.html', context={'k': k, 'cluster_id': cluster_id})

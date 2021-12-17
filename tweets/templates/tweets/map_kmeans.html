@@ -1,0 +1,10 @@
+{% extends 'tweets/base.html' %}
+{% load static %}
+{% block content %}
+<div id="map" style="height: 900px; width: 100%"></div>
+<script>
+    let k = {{k}}
+    let cluster_id = {{cluster_id}}
+</script>
+<script src="{% static 'tweets/map_kmeans.js' %}"></script>
+{% endblock content %}
