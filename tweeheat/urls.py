@@ -16,14 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from tweets.views import get_tweets, get_map, get_tweets_around, get_map_city, get_state_tweets, get_map_state
+from tweets.views import get_tweets, get_map, get_tweets_around, get_map_city, get_state_tweets, get_map_state, \
+    k_means_clustering, get_map_kmeans, bounding_box, get_map_bounding_box
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('json/all-tweets/', get_tweets),
     path('json/tweets-around/<city>', get_tweets_around),
     path('json/state/<state>', get_state_tweets),
+    path('json/kmeans/<k>/<cluster_id>', k_means_clustering),
+    path('json/bounding-box', bounding_box),
     path('', get_map),
-    path('<city>/', get_map_city),
-    path('state/<state>/', get_map_state)
+    path('city/<city>/', get_map_city),
+    path('state/<state>/', get_map_state),
+    path('kmeans/<cluster_id>', get_map_kmeans),
+    path('box/bounding-box/', get_map_bounding_box)
 ]
