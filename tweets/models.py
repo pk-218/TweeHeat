@@ -25,3 +25,12 @@ class States(models.Model):
 
     def __str__(self):
         return self.state_name
+
+
+# Clusters
+class ClusterBox(models.Model):
+    cluster_id = models.IntegerField(null=True)
+    box = models.GeometryField()
+
+    def __str__(self):
+        return self.cluster_id

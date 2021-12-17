@@ -4,7 +4,7 @@ from django.db import connection
 from django.http import JsonResponse
 from django.shortcuts import render
 
-from tweets.models import Tweets
+from tweets.models import Tweets, ClusterBox
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv')
 
@@ -61,10 +61,15 @@ def k_means_clustering(request, k, cluster_id):
     res = serializers.serialize('geojson', Tweets.objects.raw(
         f'''
             SELECT 1 as id, text, {(connection.ops.select % 'location')} FROM (SELECT
-            ST_ClusterKMeans({(connection.ops.select % 'location')}, {k}) OVER () AS cluster_id, *
-            FROM TWEETS_TWEETS) AS X WHERE cluster_id = {cluster_id};
+            ST_ClusterKMeans({(connection.ops.select % 'location')}, 20) OVER () AS cluster_id, *
+            FROM TWEETS_TWEETS) AS X WHERE cluster_id = {cluster_id} LIMIT 1000;
         '''
     ))
+    return JsonResponse(res, safe=False)
+
+
+def bounding_box(request):
+    res = serializers.serialize('geojson', ClusterBox.objects.all())
     return JsonResponse(res, safe=False)
 
 
@@ -82,5 +87,9 @@ def get_map_state(request, state):
     return render(request, 'tweets/map_state.html', context={'state': state})
 
 
-def get_map_kmeans(request, k, cluster_id):
-    return render(request, 'tweets/map_kmeans.html', context={'k': k, 'cluster_id': cluster_id})
+def get_map_kmeans(request, cluster_id):
+    return render(request, 'tweets/map_kmeans.html', context={'cluster_id': cluster_id})
+
+
+def get_map_bounding_box(request):
+    return render(request, 'tweets/map_boundingbox.html')

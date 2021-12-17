@@ -15,7 +15,7 @@ const tiles = L.tileLayer(
 
 tiles.addTo(this.map);
 
-fetch(`http://localhost:8000/json/kmeans/20/${cluster_id}`)
+fetch(`http://localhost:8000/json/bounding-box`)
   .then((res) => { res.json().then(data => {
         let x = JSON.parse(data)
         console.log(x)
@@ -30,7 +30,7 @@ fetch(`http://localhost:8000/json/kmeans/20/${cluster_id}`)
         return L.marker(latlng, { icon: redIcon });
       },})
       .bindPopup(function (layer) {
-          let output = `<strong>State</strong>: ${layer.feature.properties.state_name}<br /><strong>Coordinates</strong>: ${layer.feature.geometry.coordinates}`;
+          let output = `<a href="/kmeans/${layer.feature.properties.cluster_id}">${layer.feature.properties.cluster_id}</a>`;
           return output;
       })
       .openPopup()

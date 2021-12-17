@@ -2,8 +2,5 @@
 {% load static %}
 {% block content %}
 <div id="map" style="height: 900px; width: 100%"></div>
-<script>
-    let cluster_id = {{cluster_id}}
-</script>
-<script src="{% static 'tweets/map_kmeans.js' %}"></script>
+<script src="{% static 'tweets/map_boundingbox.js' %}"></script>
 {% endblock content %}
