@@ -1,5 +1,12 @@
 # TweeHeat
 
+<p align="center">
+  <a href="https://github.com/pk-218/TweeHeat">
+    <img src="./assets/tweeheat_logo.png" alt="TweeHeat - Logo" width="150" height="150">
+  </a>
+</p>
+
+## 📌 About
 In our project we tried to understand the trending topics of different regions of the United States of America, one of the highly COVID-19 affected countries, find the relationship between the topics, visualize the data by various geospatial functions using the dataset of geo-tagged tweets made during the pandemic. 
 
 Spatial & Graph Databases Lab Project - __TweeHeat__    
@@ -8,7 +15,7 @@ _Group 16_
 - 191080038 - [Utsav Khatu](https://github.com/utsavk28)
 - 191080040 - [Pankaj Khushalani](https://github.com/pk-218)
 
-## Key Features
+## 🎯 Key Features
 * Visualize all the tweets by their location on the map
 
 * Obtain visualization of the tweets by location such as tweets from a state, tweets around particular location using ST_DistanceSphere and ST_Within spatial functions
@@ -20,12 +27,12 @@ _Group 16_
 * Manipulate the Neo4j graph database using Cypher queries
 
 
-## Web Application Architecture
+## ⛓ Web Application Architecture
 ![TweeHeat Architecture](./assets/tweeheat_architecture.png)
 
 </br>
 
-## Project Setup
+## 🛠 Project Setup
 1. Clone the GitHub repository using Git.
 
     ```
@@ -99,7 +106,7 @@ TweeHeat
     ```
 
 5. Set up the pgAdmin database by changing the database properties in the settings.py file of the project folder. Also add the graph database credentials using neomodel.config.
-    ```
+    ```python
     DATABASES = {
     'default': {
 
@@ -138,7 +145,7 @@ TweeHeat
     python manage.py runserver
     ```
 
-## Results
+## 📸 Results
 * Base Map - The World Light Gray Basemap from the ArcGIS web server is rendered using vanillaJS.
 ![Base Map](./assets/base_map.png)
 
@@ -172,7 +179,7 @@ The endpoint for bounding boxes is BASE_URL/box/bounding-box
     - json/bounding-box
 
 
-## Conclusion
+## 🌐 Conclusion
 
 - The tweets dataset was converted into spatial form and then spatial queries were implemented to obtain the results. 
 
