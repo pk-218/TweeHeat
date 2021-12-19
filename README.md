@@ -187,4 +187,4 @@ The endpoint for bounding boxes is BASE_URL/box/bounding-box
 
 - Due to the computational limitations and large size of the dataset, we were not able to run the spatial queries on the complete data, instead we had to limit it down to few thousands, so that the web application could work smoothly. 
 
-- Also, as the free instance of Neo4J AuraDB allowed only 50K nodes and 150K relationships, importing the complete dataset on the graph database was not possible.
+- Also, as the free instance of Neo4J AuraDB allowed only 50K nodes and 175K relationships, importing the complete dataset on the graph database was not possible.
